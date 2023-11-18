@@ -39,5 +39,6 @@ async def mute(ctx, member:discord.Member):
         repository.criar_documento(documento)
         await member.send(reason)
 
+
 def setup(bot):
     mute(bot)
