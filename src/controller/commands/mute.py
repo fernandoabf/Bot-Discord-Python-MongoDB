@@ -31,13 +31,14 @@ async def mute(ctx, member:discord.Member):
             'guild': guild,
             'author': author
         }
-        
+
         embed = discord.Embed()
         embed.title = "Você foi mutado"
         embed.description = ""
 
         repository.criar_documento(documento)
         await member.send(reason)
-        
+
+
 def setup(bot):
     mute(bot)
