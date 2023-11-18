@@ -18,27 +18,38 @@ async def logs(ctx, member:discord.Member):
     if documentos:
         embed1 = discord.Embed()
         embed1.title = f'Crimes do id: {id}'
-        embed1.color = int(f'00ff00', 16)
+        embed1.color = int(f'ff0000', 16)
 
         embed2 = discord.Embed()
-        embed2.color = int(f'00ff00', 16)
-        
+
         await ctx.channel.send(embed=embed1)
 
         for documento in documentos:
             if documento['type'] == 'Aviso':
                 embed2.title = f"{documento['type']}"
+                embed2.color = int(f'ffff00', 16)
                 embed2.description = f"\nMotivo: {documento['reason']}\n\nData de aplicação: {documento['date']}\nID do log: {documento['_id']}"
+                
                 await ctx.channel.send(embed=embed2)
             
             elif documento['type'] == 'Mute':
                 embed2.title = f"{documento['type']}"
-                embed2.description = f"\nMotivo: {documento['reason']}\nTempo de duração: {documento['time']}\n\nData de aplicação: {documento['date']}\nID do log: {documento['_id']}"
+                embed2.color = int(f'ff0000', 16)
+                if documento['time'] <= 1:
+                    embed2.description = f"\nMotivo: {documento['reason']}\nTempo de duração: {documento['time']} hora\n\nData de aplicação: {documento['date']}\nID do log: {documento['_id']}"
+                else: 
+                    embed2.description = f"\nMotivo: {documento['reason']}\nTempo de duração: {documento['time']} horas\n\nData de aplicação: {documento['date']}\nID do log: {documento['_id']}"
+                await ctx.channel.send(embed=embed2)
+            
+            elif documento['type'] == 'Ban':
+                embed2.title = f"{documento['type']}"
+                embed2.color = int(f'000000', 16)
+                embed2.description = f"\nMotivo: {documento['reason']}\n\nData de aplicação: {documento['date']}\nID do log: {documento['_id']}"
                 await ctx.channel.send(embed=embed2)
     else: 
         embed3 = discord.Embed()
         embed3.title = 'Usuário está mais limpo que bumbum de neném'
-        embed3.color = int(f'ff0000', 16)
+        embed3.color = int(f'00ff00', 16)
         
         return await ctx.channel.send(embed=embed3)
 

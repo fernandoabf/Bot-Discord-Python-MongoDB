@@ -31,7 +31,7 @@ async def mute(ctx, member:discord.Member):
             'guild': guild,
             'author': author
         }
-
+        
         embed = discord.Embed()
         embed.title = "Você foi mutado"
         embed.description = ""
